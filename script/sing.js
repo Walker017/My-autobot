@@ -1,78 +1,68 @@
+const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
+
 module.exports.config = {
- name: "sing",
- version: "2.0.4",
- role: 0,
- credits: "Grey",
- description: "Play a song",
- aliases: ["sing"],
-cooldown: 0,
-hasPrefix: false,
-	usage: "",
+    name: "sing",
+    version: "1.0.0",
+    role: 0,
+    credits: "chill",
+    description: "Search music",
+    hasPrefix: false,
+    aliases: ["sing", "music"],
+    usage: "[sing] <song name>",
+    cooldown: 5
 };
 
-module.exports.run = async ({ api, event }) => {
- const axios = require("axios");
- const fs = require("fs-extra");
- const ytdl = require("@distube/ytdl-core");
- const request = require("request");
- const yts = require("yt-search");
+module.exports.run = async function({ api, event, args }) {
+    try {
+        const query = args.join(" ");
+        if (!query) {
+            return api.sendMessage("Please provide a song name to search for on Spotify ex: sing binalewala.", event.threadID);
+        }
 
- const input = event.body;
- const text = input.substring(12);
- const data = input.split(" ");
+        const apiUrl = `https://hiroshi-rest-api.replit.app/search/spotify?search=${encodeURIComponent(query)}`;
+        
+        api.sendMessage("Searching your music, please wait...", event.threadID);
 
- if (data.length < 2) {
-	return api.sendMessage("Please put a song", event.threadID);
- }
+        const response = await axios.get(apiUrl);
+        const results = response.data;
 
- data.shift();
- const song = data.join(" ");
+        if (!results || results.length === 0) {
+            return api.sendMessage("No results found for your search query.", event.threadID);
+        }
 
- try {
-	api.sendMessage(`𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗 "${song}" 𝗬𝗢𝗨𝗥 𝗦𝗜𝗡𝗚 𝗪𝗔𝗜𝗧 ❗`, event.threadID);
+        const track = results[0];
+        const trackName = track.name;
+        const trackUrl = track.track;
 
-	const searchResults = await yts(song);
-	if (!searchResults.videos.length) {
-	 return api.sendMessage("Error: Invalid request.", event.threadID, event.messageID);
-	}
+        const audioUrl = track.download;
+        const audioPath = path.join(__dirname, "spotifySong.mp3");
 
-	const video = searchResults.videos[0];
-	const videoUrl = video.url;
+        const audioResponse = await axios({
+            url: audioUrl,
+            method: 'GET',
+            responseType: 'stream'
+        });
 
-	const stream = ytdl(videoUrl, { filter: "audioonly" });
+        const writer = fs.createWriteStream(audioPath);
+        audioResponse.data.pipe(writer);
 
-	const fileName = `${event.senderID}.mp3`;
-	const filePath = __dirname + `/cache/${fileName}`;
+        writer.on('finish', () => {
+            api.sendMessage({
+                body: `Here is "${trackName}" from Spotify: ${trackUrl}`,
+                attachment: fs.createReadStream(audioPath)
+            }, event.threadID, () => {
+                fs.unlinkSync(audioPath);
+            });
+        });
 
-	stream.pipe(fs.createWriteStream(filePath));
-
-	stream.on('response', () => {
-	 console.info('[DOWNLOADER]', 'Starting download now!');
-	});
-
-	stream.on('info', (info) => {
-	 console.info('[DOWNLOADER]', `Downloading ${info.videoDetails.title} by ${info.videoDetails.author.name}`);
-	});
-
-	stream.on('end', () => {
-	 console.info('[DOWNLOADER] Downloaded');
-
-	 if (fs.statSync(filePath).size > 26214400) {
-		fs.unlinkSync(filePath);
-		return api.sendMessage('[ERR] The file could not be sent because it is larger than 25MB.', event.threadID);
-	 }
-
-	 const message = {
-		body: `🎧|𝗬𝗢𝗨𝗥 𝗠𝗨𝗦𝗜𝗖 🔵 \n\n𝗧𝗶𝘁𝗹𝗲🧃: ${video.title}\n𝗔𝗿𝘁𝗶𝘀𝘁🎤: ${video.author.name}`,
-		attachment: fs.createReadStream(filePath)
-	 };
-
-	 api.sendMessage(message, event.threadID, () => {
-		fs.unlinkSync(filePath);
-	 });
-	});
- } catch (error) {
-	console.error('[ERROR]', error);
-	api.sendMessage('An error occurred while processing the command.', event.threadID);
- }
+        writer.on('error', (err) => {
+            console.error('Stream writer error:', err);
+            api.sendMessage("An error occurred while processing the request.", event.threadID);
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        api.sendMessage("An error occurred while processing the request.", event.threadID);
+    }
 };

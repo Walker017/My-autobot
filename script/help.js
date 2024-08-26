@@ -25,30 +25,30 @@ module.exports.run = async function({
       let page = 1;
       let start = (page - 1) * pages;
       let end = start + pages;
-      let helpMessage = `  ㋛.𝙰ｖ𝚊ｌ𝚊ｂｌ𝚎  𝚌𝚖ｄ:\n━━━━━━━━━━━━━━━\n\n`;
+      let helpMessage = ` ⋆☾⋆⁺₊✧𝐌𝐘 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐋𝐈𝐒𝐓✩ ♬ ₊.:\n\n`;
       for (let i = start; i < Math.min(end, commands.length); i++) {
-        helpMessage += `\t${i + 1}. ⋆⋆⁺₊✧🎀 ${prefix}${commands[i]} ✩ ₊🌱\n`;
+        helpMessage += `\t${i + 1}. ⋆☾⋆⁺₊✧ ${prefix}${commands[i]} ✩ ♬ ₊\n`;
       }
-      helpMessage += '\n';
+      helpMessage += '˖ ࣪ ᪥𝐓𝐇𝐄 𝐄𝐕𝐄𝐍𝐓 𝐋𝐈𝐒𝐓𐀔 𓂃:\n\n';
       eventCommands.forEach((eventCommand, index) => {
-        helpMessage += `\t${index + 1}. ♣✩ ⚽ ₊ ${prefix}${eventCommand} ⋆🎯⋆⁺₊🌱\n`;
+        helpMessage += `\t${index + 1}. ✩ ♬ ₊ ${prefix}${eventCommand} ⋆☾⋆⁺₊✧\n`;
       });
-      helpMessage += `\n𝐏𝐀𝐆𝐄 ${page}/${Math.ceil(commands.length / pages)}. 𝗧𝗼 𝘃𝗶𝗲𝘄 𝘁𝗵𝗲 𝗡𝗲𝘅𝘁🤬 𝗣𝗮𝗴𝗲, 𝗧𝘆𝗽𝗲 '${prefix}𝗵𝗲𝗹𝗽 𝗽𝗮𝗴𝗲🎮 𝗡𝘂𝗺𝗯𝗲𝗿'. 𝗧𝗼 𝗩𝗶𝗲𝘄 𝗶𝗻𝗳𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻🥉 𝗔𝗯𝗼𝘂𝘁 𝗮 𝗦𝗽𝗲𝗰𝗶𝗳𝗶𝗰 𝗖𝗼𝗺𝗺𝗮𝗻𝗱, 𝗧𝘆𝗽𝗲. '${prefix}𝗛𝗲𝗹𝗽 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 𝗡𝗮𝗺𝗲⚽ 🎖`;
+      helpMessage += `\n𝐏𝐀𝐆𝐄 ${page}/${Math.ceil(commands.length / pages)}. 𝐓𝐎 𝐕𝐈𝐄𝐖 𝐓𝐇𝐄 𝐍𝐄𝐗𝐓 𝐏𝐀𝐆𝐄, 𝐓𝐘𝐏𝐄 '${prefix}𝐇𝐄𝐋𝐏 𝐏𝐀𝐆𝐄 𝐍𝐔𝐌𝐁𝐄𝐑'. 𝐓𝐎 𝐕𝐈𝐄𝐖 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 𝐀𝐁𝐎𝐔𝐓 𝐀 𝐒𝐏𝐄𝐂𝐈𝐅𝐈𝐂 𝐂𝐎𝐌𝐌𝐀𝐍𝐃, 𝐓𝐘𝐏E. '${prefix}𝐇𝐄𝐋𝐏 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐍𝐀𝐌E✩ ♬`;
       api.sendMessage(helpMessage, event.threadID, event.messageID);
     } else if (!isNaN(input)) {
       const page = parseInt(input);
       const pages = 20;
       let start = (page - 1) * pages;
       let end = start + pages;
-      let helpMessage = `𝚊ｖ𝚊ｌ𝚊ｂｌ𝚎 𝚌𝚖ｄ🥢\n━━━━━━━━━━━━━━━\n\n`;
+      let helpMessage = ` ⋆☾⋆⁺₊✧𝐌𝐘 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐋𝐈𝐒𝐓✩ ♬ ₊.:\n\n`;
       for (let i = start; i < Math.min(end, commands.length); i++) {
-        helpMessage += `\t${i + 1}. ⋆⋆⁺₊✧🎀 ${prefix}${commands[i]} ➪✩🏏 ₊\n`;
+        helpMessage += `\t${i + 1}. ⋆☾⋆⁺₊✧ ${prefix}${commands[i]} ✩ ♬ ₊\n`;
       }
-      helpMessage += '\n';
+      helpMessage += '˖ ࣪ ᪥𝐓𝐇𝐄 𝐄𝐕𝐄𝐍𝐓 𝐋𝐈𝐒𝐓𐀔 𓂃:\n\n';
       eventCommands.forEach((eventCommand, index) => {
-        helpMessage += `\t${index + 1}.✩⚽ ₊𒊹${prefix}${eventCommand} ⋆🏆⋆⁺₊✧☘\n`;
+        helpMessage += `\t${index + 1}.✩ ♬ ₊.${prefix}${eventCommand} ⋆☾⋆⁺₊✧\n`;
       });
-      helpMessage += `\n𝗣𝗮𝗴𝗲 ${page} 𝗢𝗳 ${Math.ceil(commands.length / pages)}\n𝗕𝘁𝘄 𝗖𝗿𝗲𝗮𝘁𝗼𝗿 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗯𝗼𝘁➪➪ ♧ \n➪ https://another-gpt.onrender.com`;
+      helpMessage += `\n𝐏𝐀𝐆𝐄 ${page} of ${Math.ceil(commands.length / pages)}\n𝗕𝗧𝗪 𝗖𝗥𝗘𝗔𝗧𝗘 𝗬𝗢𝗨𝗥 𝗢𝗪𝗡 𝗕𝗢𝗧 𝗛𝗘𝗥𝗘\n➪snicker.onrender.com`;
       api.sendMessage(helpMessage, event.threadID, event.messageID);
     } else {
       const command = [...Utils.handleEvent, ...Utils.commands].find(([key]) => key.includes(input?.toLowerCase()))?.[1];
@@ -91,7 +91,7 @@ module.exports.handleEvent = async function({
     messageID,
     body
   } = event;
-  const message = prefix ? '🎀𝖲𝗒𝗌𝗍𝖾𝗆𝗌 𝗉𝗋𝖾𝖿𝗂𝗑 𝗂𝗌:🎲\nY🎀𝗈𝗎𝗋 𝖼𝗁𝖺𝗍𝖻𝗈𝗍 𝗉𝗋𝖾𝖿𝗂𝗑 𝗂𝗌: ' + prefix : "🎀Ａｎｏｔｈｅｒ.\n━━━━━━━━━━━━━━━\nSorry i don't have prefix";
+  const message = prefix ? 'This is my prefix: ' + prefix : "Sorry i don't have prefix";
   if (body?.toLowerCase().startsWith('prefix')) {
     api.sendMessage(message, threadID, messageID);
   }
