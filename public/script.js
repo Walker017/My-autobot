@@ -1,18 +1,16 @@
 document.getElementById('agreeCheckbox').addEventListener('change', function() {
   document.getElementById('submitButton').disabled = !this.checked;
 });
+
 let Commands = [{
   'commands': []
 }, {
   'handleEvent': []
 }];
+
 function showAds() {
   var ads = [
-    'https://bit.ly/43yn66n',
-    'https://bit.ly/4adDagg',
-    'https://bit.ly/3VzhG92',
-    'https://bit.ly/3xkQTDg',
-    'https://bit.ly/3TTUAZC'
+    ''
   ];
   var index = Math.floor(Math.random() * ads.length);
   window.location.href = ads[index];
@@ -48,6 +46,7 @@ function updateTime() {
 }
 updateTime();
 setInterval(updateTime, 1000);
+
 async function State() {
   const jsonInput = document.getElementById('json-data');
   const button = document.getElementById('submitButton');
@@ -73,22 +72,22 @@ async function State() {
       const data = await response.json();
       if (data.success) {
         jsonInput.value = '';
-        showResult(data.message);
+        showResult(data.message, 'success');
         showAds();
       } else {
         jsonInput.value = '';
-        showResult(data.message);
+        showResult(data.message, 'error');
         showAds();
       }
     } else {
       jsonInput.value = '';
-      showResult('Invalid JSON data. Please check your input.');
+      showResult('Invalid JSON data. Please check your input.', 'error');
       showAds();
     }
   } catch (parseError) {
     jsonInput.value = '';
     console.error('Error parsing JSON:', parseError);
-    showResult('Error parsing JSON. Please check your input.');
+    showResult('Error parsing JSON. Please check your input.', 'error');
     showAds();
   } finally {
     setTimeout(() => {
@@ -97,20 +96,23 @@ async function State() {
   }
 }
 
-function showResult(message) {
-  const resultContainer = document.getElementById('result');
-  resultContainer.innerHTML = `<h5>${message}</h5>`;
-  resultContainer.style.display = 'block';
+function showResult(message, type) {
+  Swal.fire({
+    title: type === 'success' ? 'Success' : 'Error',   
+    text: message,
+    icon: type,
+    background: '#333',
+    color: '#ccc',
+    confirmButtonColor: '#333',
+    confirmButtonText: 'OK'
+  });
 }
+
 async function commandList() {
   try {
     const [listOfCommands, listOfCommandsEvent] = [document.getElementById('listOfCommands'), document.getElementById('listOfCommandsEvent')];
     const response = await fetch('/commands');
-    const {
-      commands,
-      handleEvent,
-      aliases
-    } = await response.json();
+    const { commands, handleEvent, aliases } = await response.json();
     [commands, handleEvent].forEach((command, i) => {
       command.forEach((command, index) => {
         const container = createCommand(i === 0 ? listOfCommands : listOfCommandsEvent, index + 1, command, i === 0 ? 'commands' : 'handleEvent', aliases[index] || []);
@@ -158,11 +160,7 @@ function toggleCheckbox() {
     label: '.form-check-label.handleEvent',
     array: Commands[1].handleEvent
   }];
-  box.forEach(({
-    input,
-    label,
-    array
-  }) => {
+  box.forEach(({ input, label, array }) => {
     const checkbox = this.querySelector(input);
     const labelText = this.querySelector(label);
     if (checkbox) {
@@ -188,10 +186,7 @@ function selectAllCommands() {
     input: '.form-check-input.commands',
     array: Commands[0].commands
   }];
-  box.forEach(({
-    input,
-    array
-  }) => {
+  box.forEach(({ input, array }) => {
     const checkboxes = document.querySelectorAll(input);
     const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
     checkboxes.forEach((checkbox) => {
@@ -222,10 +217,7 @@ function selectAllEvents() {
     input: '.form-check-input.handleEvent',
     array: Commands[1].handleEvent
   }];
-  box.forEach(({
-    input,
-    array
-  }) => {
+  box.forEach(({ input, array }) => {
     const checkboxes = document.querySelectorAll(input);
     const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
     checkboxes.forEach((checkbox) => {
@@ -250,4 +242,5 @@ function selectAllEvents() {
     });
   });
 }
+
 commandList();

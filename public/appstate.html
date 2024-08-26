@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Appstate Getter_.Metoushela</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <style>
+    :root {
+      --darkbg: #000000;
+      --darkt: #008000;
+      --lightbg: #fff;
+      --lightt: #000000;
+      --toggleHeight: 2.5em;
+      --toggleWidth: 5em;
+      --toggleBtnRadius: 2em;
+      --moonColor: #D9FBFF;
+      --sunColor: #FFBF71;
+    }
+
+    body {
+      transition: all .2s ease-in-out;
+      background: var(--darkbg);
+      color: var(--darkt);
+      text-align: center;
+    }
+
+    .light {
+      background: var(--lightbg);
+      color: var(--lightt);
+    }
+
+    .toggle {
+      margin: 1em auto;
+      position: relative;
+      height: var(--toggleHeight);
+      width: var(--toggleWidth);
+      border-radius: var(--toggleHeight);
+      background: var(--moonColor);
+      cursor: pointer;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.5em;
+      transition: background 500ms ease-in-out;
+    }
+
+    .toggle.light {
+      background: var(--sunColor);
+    }
+
+    .toggle::before, .toggle::after {
+      content: '';
+      display: block;
+      border-radius: 50%;
+      width: 1em;
+      height: 1em;
+      transition: all 500ms ease-in-out;
+    }
+
+    .toggle::before {
+      background: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .toggle.light::before {
+      background: #FFBF71;
+      box-shadow: none;
+    }
+
+    .toggle::after {
+      background: var(--moonColor);
+      box-shadow: -5px 0 0 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle.light::after {
+      background: #FFD700;
+      box-shadow: 0 0 0 10px rgba(255, 223, 0, 0.5), 0 0 0 20px rgba(255, 223, 0, 0.2);
+    }
+
+    .toggle-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 5px;
+    box-shadow: 0 0 20px #333; 
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+    .form-group small a {
+      cursor: pointer;
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    .copy-button {
+      display: none;
+    }
+
+    .modal-content {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<iframe style="display: none;" width="1579" height="563" src="https://www.youtube.com/embed/AkGGFKuT6Cs?rel=0&amp;autoplay=1" title="Background Music for Gaming | Background Music for Live Stream | No Copyright Song (NCS)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    
+  <div class="toggle-container">
+    <div class="toggle" id="toggle-theme"></div>
+  </div>
+  <div class="container">
+    <h3 class="text-center">Appstate Getter</h3>
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" placeholder="Enter your Email/Uid/Number...">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="password" placeholder="Enter Your Password...">
+      <small><a onclick="showPass()">Show Password</a></small>
+    </div>
+    <button class="btn btn-success btn-block" onclick="getAppstate()">Get</button>
+    <div class="message mt-3" id="message"></div>
+    <pre class="appstate" id="appstate-result" style="color: #008000;"></pre>
+    <button class="btn btn-primary copy-button mt-3" onclick="copyToClipboard()">Copy to Clipboard</button>
+   <a href="/site" class="btn btn-secondary mt-3" style="background-color: green;">Back to Home!</a>
+  </div>
+
+  <div class="modal fade" id="copyModal" tabindex="-1" role="dialog" aria-labelledby="copyModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="copyModalLabel">Copied</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Appstate copied to clipboard.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function showPass() {
+      const passwordField = document.getElementById('password');
+      passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+    }
+
+    async function getAppstate() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const messageDiv = document.getElementById('message');
+      const appstateDiv = document.getElementById('appstate-result');
+      const copyButton = document.querySelector('.copy-button');
+
+      if (!email || !password) {
+        messageDiv.textContent = 'Please fill in both email and password fields.';
+        return;
+      }
+
+      messageDiv.textContent = 'Fetching appstate...';
+      appstateDiv.textContent = '';
+      copyButton.style.display = 'none';
+
+      try {
+        const response = await fetch(`https://deku-rest-api.gleeze.com/getcookie?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          const cookies = data.cookie;
+          if (!cookies || cookies.length === 0) {
+            throw new Error("No cookies found in the response.");
+          }
+          messageDiv.style.color = 'green';
+          messageDiv.textContent = 'Appstate fetched successfully.';
+          appstateDiv.textContent = JSON.stringify(cookies, null, 2);
+          copyButton.style.display = 'block';
+        } else {
+          messageDiv.style.color = 'red';
+          messageDiv.textContent = `Error: ${data.message || 'Failed to fetch appstate'}`;
+          console.error('Error response:', data);
+        }
+      } catch (error) {
+        messageDiv.style.color = 'red';
+        messageDiv.textContent = `Error: ${error.message || 'Failed to fetch appstate'}`;
+        console.error('Fetch error:', error);
+      }
+    }
+
+    function copyToClipboard() {
+      const appstateDiv = document.getElementById('appstate-result');
+      const textArea = document.createElement('textarea');
+      textArea.value = appstateDiv.textContent;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      $('#copyModal').modal('show');
+    }
+
+    $('#toggle-theme').click(function () {
+      $("body").toggleClass('light');
+      $(".toggle").toggleClass('light');
+    });
+  </script>
+     <script>
+        window.onload = function() {
+            Swal.fire({
+                title: 'Welcome users Please Read!',
+                text: 'NOTE: Use Dump/Dummy Account - Don`t use main account or have memories account because the owner is not responsible for whatever happens to your account',
+                imageUrl: 'ampoule.png',
+                imageWidth: 100,
+                imageHeight: 100,
+                imageAlt: 'Custom image',
+                confirmButtonText: 'Got it!'
+            });
+        };
+    </script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

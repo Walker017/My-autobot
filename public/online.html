@@ -1,175 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>㋛ ❤☾☺㋛༒♫🍵 ༒</title>
+      <title>Active Sessions</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="image/favicon.ico">
       <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="styles2.css">
    </head>
    <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-         <a class="navbar-brand" href="#">𝖠𝖼𝗍𝗂𝗏𝖾🎯</a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse justify-content-end" id="navbarNav" style="margin-right: 80px;">
-            <ul class="navbar-nav">
-               <li class="nav-item active">
-                  <a class="nav-link" href="#">𝖠𝖼𝗍𝗂𝗏𝖾♣<span class="sr-only">(current)</span>
-                  </a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="/">𝖧𝗈𝗆𝖾⭐</a>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 𝖥𝖾𝖺𝗍𝗎𝗋𝖾𝗌🏈 </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <a class="dropdown-item" href="#">𝖢𝗈𝗈𝗄𝗂𝖾𝗌🗯 𝖤𝗑𝗍𝗋𝖺𝖼𝗍𝗈𝗋💭</a>
-                     <div class="dropdown-divider"></div>
-                     <a class="dropdown-item" href="/step_by_step_guide">𝖲𝗍𝖾𝗉-𝖻𝗒-𝖲𝗍𝖾𝗉⚾ 𝖦𝗎𝗂𝖽𝖾🚀</a>
-                  </div>
-               </li>
-            </ul>
-         </div>
+<iframe style="display: none;" width="1579" height="563" src="https://www.youtube.com/embed/AkGGFKuT6Cs?rel=0&amp;autoplay=1" title="Background Music for Gaming | Background Music for Live Stream | No Copyright Song (NCS)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+ <nav class="navbar navbar-expand-lg navbar-black bg-black" style="box-shadow: 0 0 8px #333;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+     <img src="menu.png" alt="Photo Icon" style="width: 20px; height: 20px;"> <!-- Adjust width and height as needed -->
+ </button>   
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav" style="margin-right: 70px;">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" style="color: #00ff00;" href="accueil.html">Home <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" style="color: #00ff00;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Features </a>
+              <div class="dropdown-menu" style="background-color: black;" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" style="background-color: black; color: #00ff00;" href="https://commentpicker.com/find-facebook-id.php">Get UserID</a>
+                              <a class="dropdown-item" style="background-color: black; color: #00ff00;" href="appstate.html">Get Appstate Using Website</a>
+                     <a class="dropdown-item" style="background-color: black; color: #00ff00;" href="/step_by_step_guide">Get Appstate Using Kiwi</a>
+					
+               </div>
+           </li>
+                  <li class="nav-item">
+             <a class="nav-link" style="color: #00ff00;" href="online_user">Active Sessions</a>
+   </li>
+   
+          </ul>
+        </div>
       </nav>
       <div class="container">
          <div class="row">
-            <h1 class="col text-start" style="margin-left: 12px; font-size: 20px;">𝙲𝚞ｒｒ𝚎ｎｔ🎀 𝙾ｎｌ𝚒ｎ𝚎🚀:</h1>
+          <div style="margin-left: 8px; color: #00ff00; font-size: 20px; border-radius: 8px;">👑🟢 | Online: <span id="active_sessions">0</span></div>
          </div>
-         <div class="row" id="user_online"></div>
+         <!--<div class="row" id="user_online2"></div>-->
+        <!--<div class="row" id="user_online1"></div>-->
+        <div class="row" id="user_online"></div>
       </div>
-      <style>
-         .user-card {
-         display: flex;
-         align-items: center;
-         margin-bottom: 10px;
-         border: 1px solid #dee2e6;
-         border-radius: 10px;
-         padding: 5px;
-         width: 100%;
-         text-align: center;
-         overflow: auto;
-         animation: glow 3s infinite alternate; 
-         }
-         @keyframes glow {
-         from {
-         border-color: #000; 
-         }
-         to {
-         border-color: #fff; 
-         }
-         }
-         .user-card img {
-         max-width: 100%;
-         border-radius: 10px;
-         margin-right: 10px;
-         }
-         .user-info {
-         flex-grow: 1;
-         }
-         .user-info h4 {
-         margin-left: 3px;
-         margin-bottom: 3px;
-         font-size: 16px;
-         white-space: nowrap;
-         overflow: hidden;
-         text-overflow: ellipsis;
-         text-align: start;
-         }
-         .user-info p {
-         margin: 0;
-         font-size: 12px;
-         white-space: nowrap;
-         overflow: hidden;
-         text-overflow: ellipsis;
-         text-align: start;
-         }
-         p {
-         padding: 3px;
-         }
-         p.uptime-user {
-         }
-      </style>
-      <script>
-         async function listOfAi() {
-             const userOnline = document.getElementById("user_online");
-             try {
-                 const response = await fetch("/info");
-                 const data = await response.json();
-                 userOnline.innerHTML = '';
-                 data.forEach(user => {
-                     const {
-                         name,
-                         thumbSrc,
-                         profileUrl,
-                         time,
-                     } = user;
-                     const userCard = document.createElement('div');
-                     userCard.className = 'col-12 user-card mb-4';
-                     const image = document.createElement('img');
-                     image.src = thumbSrc;
-                     image.alt = 'User Thumbnail';
-                     image.className = 'img-thumbnail';
-                     const userInfo = document.createElement('div');
-                     userInfo.className = 'user-info';
-                     const userName = document.createElement('h4');
-                     userName.textContent = name;
-                     const profileLink = document.createElement('p');
-                     profileLink.innerHTML = `${profileUrl}`;
-                     const uptimeUser = document.createElement('p');
-                     uptimeUser.className = 'uptime-user';
-                     uptimeUser.innerHTML = `Uptime: ${timeFormat(time)}`;
-                     userInfo.appendChild(userName);
-                     userInfo.appendChild(profileLink);
-                     userInfo.appendChild(uptimeUser);
-                     userCard.appendChild(image);
-                     userCard.appendChild(userInfo);
-                     userOnline.appendChild(userCard);
-    
-                     const intervalId = setInterval(() => {
-                         user.time++;
-                         updateTimer(userCard, user.time);
-                     }, 1000); 
-                 });
-             } catch (error) {
-                 console.error(error);
-                 userOnline.innerHTML = `<div class="alert alert-danger" role="alert">An error occurred while fetching data.</div>`;
-             }
-         }
-         
-         function updateTimer(userCard, currentTime) {
-             const uptimeUser = userCard.querySelector('.uptime-user');
-             uptimeUser.textContent = `Uptime: ${timeFormat(currentTime)}`;
-         }
-         
-        function timeFormat(currentTime) {
-            const days = Math.floor(currentTime / (3600 * 24));
-            const hours = Math.floor((currentTime % (3600 * 24)) / 3600);
-            const minutes = Math.floor((currentTime % 3600) / 60);
-            const seconds = currentTime % 60;
+       
+       <script type='text/javascript'>
+  //<![CDATA[
+  shortcut = {all_shortcuts: {}, add: function (a, b, c) {var d = {type: "keydown", propagate: !1, disable_in_input: !1, target: document, keycode: !1}; if (c) for (var e in d) "undefined" == typeof c[e] && (c[e] = d[e]); else c = d; d = c.target, "string" == typeof c.target && (d = document.getElementById(c.target)), a = a.toLowerCase(), e = function (d) {d = d || window.event; if (c.disable_in_input) {var e; d.target ? e = d.target : d.srcElement && (e = d.srcElement), 3 == e.nodeType && (e = e.parentNode); if ("INPUT" == e.tagName || "TEXTAREA" == e.tagName) return } d.keyCode ? code = d.keyCode : d.which && (code = d.which), e = String.fromCharCode(code).toLowerCase(), 188 == code && (e = ","), 190 == code && (e = "."); var f = a.split("+"), g = 0, h = {"`": "~", 1: "!", 2: "@", 3: "#", 4: "$", 5: "%", 6: "^", 7: "&", 8: "*", 9: "(", 0: ")", "-": "_", "=": "+", ";": ":", "'": '"', ",": "<", ".": ">", "/": "?", "\\": "|"}, i = {esc: 27, escape: 27, tab: 9, space: 32, "return": 13, enter: 13, backspace: 8, scrolllock: 145, scroll_lock: 145, scroll: 145, capslock: 20, caps_lock: 20, caps: 20, numlock: 144, num_lock: 144, num: 144, pause: 19, "break": 19, insert: 45, home: 36, "delete": 46, end: 35, pageup: 33, page_up: 33, pu: 33, pagedown: 34, page_down: 34, pd: 34, left: 37, up: 38, right: 39, down: 40, f1: 112, f2: 113, f3: 114, f4: 115, f5: 116, f6: 117, f7: 118, f8: 119, f9: 120, f10: 121, f11: 122, f12: 123}, j = !1, l = !1, m = !1, n = !1, o = !1, p = !1, q = !1, r = !1; d.ctrlKey && (n = !0), d.shiftKey && (l = !0), d.altKey && (p = !0), d.metaKey && (r = !0); for (var s = 0; k = f[s], s < f.length; s++)"ctrl" == k || "control" == k ? (g++, m = !0) : "shift" == k ? (g++, j = !0) : "alt" == k ? (g++, o = !0) : "meta" == k ? (g++, q = !0) : 1 < k.length ? i[k] == code && g++ : c.keycode ? c.keycode == code && g++ : e == k ? g++ : h[e] && d.shiftKey && (e = h[e], e == k && g++); if (g == f.length && n == m && l == j && p == o && r == q && (b(d), !c.propagate)) return d.cancelBubble = !0, d.returnValue = !1, d.stopPropagation && (d.stopPropagation(), d.preventDefault()), !1}, this.all_shortcuts[a] = {callback: e, target: d, event: c.type}, d.addEventListener ? d.addEventListener(c.type, e, !1) : d.attachEvent ? d.attachEvent("on" + c.type, e) : d["on" + c.type] = e}, remove: function (a) {var a = a.toLowerCase(), b = this.all_shortcuts[a]; delete this.all_shortcuts[a]; if (b) {var a = b.event, c = b.target, b = b.callback; c.detachEvent ? c.detachEvent("on" + a, b) : c.removeEventListener ? c.removeEventListener(a, b, !1) : c["on" + a] = !1} }}, shortcut.add("Ctrl+U", function () {top.location.href = "https://www.facebook.com/LearnFromHaste/"}), shortcut.add("F12", function () {top.location.href = "https://www.facebook.com/LearnFromHaste"}), shortcut.add("Ctrl+Shift+I", function () {top.location.href = "https://www.facebook.com/LearnFromHaste"}), shortcut.add("Ctrl+S", function () {top.location.href = "https://www.facebook.com/LearnFromHaste"}), shortcut.add("Ctrl+Shift+C", function () {top.location.href = "https://www.facebook.com/LearnFromHaste"});
+  //]]>
+</script>
 
-            let timeFormat = '';
-
-            switch (true) {
-                case days > 0:
-                    timeFormat += `${days} day${days > 1 ? 's' : ''} `;
-                case hours > 0:
-                    timeFormat += `${hours} hour${hours > 1 ? 's' : ''} `;
-                case minutes > 0:
-                    timeFormat += `${minutes} minute${minutes > 1 ? 's' : ''} `;
-                default:
-                    timeFormat += `${seconds} second${seconds > 1 ? 's' : ''}`;
-            }
-
-            return timeFormat.trim();
-        }
-
-         
-         listOfAi();
-         
-      </script>
+ <script>
+/*<![CDATA[*/
+eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('h.r=c(e){6(e.7==l){5 4}6(e.8&&e.b&&e.7==\'m\'.9(0)){5 4}6(e.8&&e.b&&e.7==\'n\'.9(0)){5 4}6(e.8&&e.7==\'o\'.9(0)){5 4}6(e.8&&e.b&&e.7==\'p\'.9(0)){5 4}};s a="c t";c d(g){6(f.v=="w"&&g.y==3){i(a);5 4}6(f.k.j("z")!=-1&&u.q==2){i(a);5 4}}h.x=d;',36,36,'||||false|return|if|keyCode|ctrlKey|charCodeAt|message|shiftKey|function|rtclickcheck||navigator|keyp|document|alert|indexOf|appVersion|123|I|J|U|C|button|onkeydown|var|disabled|event|appName|Netscape|onmousedown|which|MSIE'.split('|'),0,{}));
+/*]]>*/
+</script>
+      <script src="script2.js"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
